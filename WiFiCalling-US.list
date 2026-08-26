@@ -1,0 +1,124 @@
+#!name=Wi-Fi Calling US
+#!desc=US Wi-Fi Calling rules for Surge / Shadowrocket — merged and deduplicated from wzx-moe and LOWERTOP
+# Source:
+# - wzx-moe/surface-wifi-calling-surge-rules
+# - LOWERTOP/Shadowrocket-First
+#
+# Design:
+# - Keep carrier-specific Apple / T-Mobile / Verizon / AT&T rules.
+# - Collapse the large MCC/MNC-generated 3GPP list into MCC-level suffix rules.
+# - Keep UDP 500/4500 for IKE/IPsec Wi-Fi Calling.
+# - Keep known US carrier IP ranges.
+#
+# Note:
+# The MCC-level 3GPP rules intentionally cover the same US MCC families
+# represented by the source database, while avoiding thousands of repetitive
+# per-MNC lines. This is an optimized ruleset, not a byte-for-byte copy.
+
+# ==========================================
+# Apple
+# ==========================================
+
+# Apple region / network detection used by Wi-Fi Calling workflows
+DOMAIN-SUFFIX,gspe1-ssl.ls.apple.com
+
+
+# ==========================================
+# T-Mobile
+# ==========================================
+
+DOMAIN,t-mobile.gdsb.net
+DOMAIN,crl.t-mobile.com
+DOMAIN-SUFFIX,eas3.msg.t-mobile.com
+DOMAIN-SUFFIX,mascns.t-mobile.com
+DOMAIN-SUFFIX,ns.sipgeo.t-mobile.com
+DOMAIN-SUFFIX,t-mobile.com
+DOMAIN-KEYWORD,t-mobile
+
+
+# ==========================================
+# Ultra Mobile
+# ==========================================
+
+DOMAIN,cust-005-v4-prod-atl2.gdsb.net
+DOMAIN-SUFFIX,ultramobile.com
+DOMAIN-SUFFIX,redirect.ultra.me
+DOMAIN-KEYWORD,ultramobile
+
+
+# ==========================================
+# Verizon
+# ==========================================
+
+DOMAIN,2.vzw.otgeuicc.com
+DOMAIN,gsma2.vzw.otgeuicc.com
+
+
+# ==========================================
+# AT&T
+# ==========================================
+
+DOMAIN,cust-001-v4-prod-atl2.gdsb.net
+DOMAIN,epdg.epc.att.net
+DOMAIN,epdg.epc.att-idns.net
+DOMAIN,sentitlement2.mobile.att.net
+DOMAIN,vvm.mobile.att.net
+
+
+# ==========================================
+# Other Carrier / ePDG
+# ==========================================
+
+DOMAIN,epdg.mobilecore.llagroup.com
+DOMAIN-SUFFIX,optimizely.com
+
+
+# ==========================================
+# General IMS / ePDG — United States
+# ==========================================
+#
+# The original wzx-moe list contains thousands of individual
+# mncXXX.mccYYY.3gppnetwork.org and
+# mncXXX.mccYYY.pub.3gppnetwork.org entries.
+#
+# They can be represented by the corresponding MCC suffixes:
+#   mncXXX.mcc310.3gppnetwork.org
+#   -> DOMAIN-SUFFIX,mcc310.3gppnetwork.org
+#
+# This preserves the US MCC families represented by the source
+# while substantially reducing rule count.
+
+DOMAIN-SUFFIX,mcc310.3gppnetwork.org
+DOMAIN-SUFFIX,mcc310.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mcc311.3gppnetwork.org
+DOMAIN-SUFFIX,mcc311.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mcc312.3gppnetwork.org
+DOMAIN-SUFFIX,mcc312.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mcc313.3gppnetwork.org
+DOMAIN-SUFFIX,mcc313.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mcc314.3gppnetwork.org
+DOMAIN-SUFFIX,mcc314.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mcc316.3gppnetwork.org
+DOMAIN-SUFFIX,mcc316.pub.3gppnetwork.org
+
+
+# ==========================================
+# UDP / IKE / IPsec
+# ==========================================
+#
+# Wi-Fi Calling commonly uses IKE/IPsec, so UDP 500/4500 has no
+# SNI/Host information that a DOMAIN rule can match.
+#
+# Keep these near the top of the effective rule list when possible.
+
+AND,((PROTOCOL,UDP),(DEST-PORT,500),(GEOIP,US))
+AND,((PROTOCOL,UDP),(DEST-PORT,4500),(GEOIP,US))
+
+
+# ==========================================
+# IP
+# ==========================================
+
+IP-CIDR,206.29.177.36/32,no-resolve
+IP-CIDR,208.54.0.0/16,no-resolve
+IP-CIDR,66.94.0.0/19,no-resolve
