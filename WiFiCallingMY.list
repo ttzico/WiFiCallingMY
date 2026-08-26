@@ -12,4 +12,8 @@
 # Virtual IP addresses are intentionally excluded.
 # UDP 500/4500 are intentionally not matched globally.
 
+# Maxis IMS / ePDG
 DOMAIN,epdg.epc.mnc012.mcc502.pub.3gppnetwork.org
+
+# Apple / Maxis carrier service
+DOMAIN,apple-es.maxis.com.my
