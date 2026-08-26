@@ -1,0 +1,490 @@
+#!name=WiFiCalling-HK
+#!desc=Hong Kong Wi-Fi Calling rules for Surge / Shadowrocket
+#!category=WiFi Calling
+
+# ============================================================
+# WiFiCalling-HK
+# ============================================================
+#
+# Merged from:
+# - wzx-moe/surface-wifi-calling-surge-rules
+# - LOWERTOP/Shadowrocket-First
+#
+# Optimized:
+# - Deduplicated identical rules
+# - Removed DOMAIN rules already covered by DOMAIN-SUFFIX
+# - Preserved all MCC/MNC coverage from wzx-moe
+# - Preserved carrier-specific rules from LOWERTOP
+# - Preserved carrier IP fallback rules
+#
+# Structure:
+# 01. Standard / Generic Wi-Fi Calling
+# 02. Standard / 3GPP IMS & ePDG
+# 03. Apple / Region Detection
+# 04. Carrier Supplement / CSL
+# 05. Carrier Supplement / CMHK
+# 06. Carrier Supplement / 3 HK
+# 07. Carrier IP Fallback
+#
+# ============================================================
+
+
+# ============================================================
+# 【01】标准规则 / Generic Wi-Fi Calling
+# ============================================================
+
+# IKE / IPsec Wi-Fi Calling
+# UDP 500 / 4500
+#
+# LOWERTOP additionally included UDP 16384-16403.
+# Kept here as an extended Wi-Fi Calling port range.
+#
+AND,((GEOIP,HK),(AND,((PROTOCOL,UDP),(OR,((DEST-PORT,500),(DEST-PORT,4500),(DEST-PORT,16384-16403))))))
+
+
+# ============================================================
+# 【02】标准规则 / 3GPP IMS & ePDG
+# ============================================================
+
+# 3GPP domain pattern:
+# ims.mnc<MNC>.mcc<MCC>.3gppnetwork.org
+#
+# 3GPP public / ePDG domain pattern:
+# epdg.epc.mnc<MNC>.mcc<MCC>.pub.3gppnetwork.org
+#
+# All observed Hong Kong MCC/MNC rows from wzx-moe are retained.
+
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-00
+# Hong Kong Telecommunications (HKT) / CSL
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc000.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc000.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-01
+# CITIC Telecom / 1616
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc001.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc001.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-02
+# HKT / CSL
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc002.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc002.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-03
+# Hutchison / 3
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc003.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc003.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-04
+# Hutchison / 3
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc004.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc004.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-05
+# Hutchison / 3 CDMA
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc005.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc005.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-06
+# SmarTone
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc006.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc006.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-07
+# China Unicom Hong Kong
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc007.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc007.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-10
+# HKT / CSL
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc010.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc010.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-11
+# China-Hong Kong Telecom
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc011.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc011.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-12
+# China Mobile Hong Kong
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc012.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc012.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-13
+# China Mobile Hong Kong
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc013.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc013.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-14
+# Hutchison Telecom
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc014.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc014.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-15
+# SmarTone
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc015.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc015.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-16
+# HKT / CSL
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc016.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc016.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-17
+# SmarTone
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc017.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc017.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-18
+# HKT / CSL
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc018.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc018.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-19
+# HKT / CSL
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc019.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc019.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-20
+# HKT / CSL
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc020.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc020.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-24
+# Multibyte Info Technology
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc024.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc024.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-25
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc025.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc025.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-26
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc026.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc026.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-27
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc027.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc027.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-28
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc028.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc028.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-290
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc290.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc290.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-291
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc291.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc291.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-292
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc292.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc292.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-293
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc293.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc293.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-294
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc294.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc294.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-295
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc295.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc295.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-296
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc296.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc296.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-297
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc297.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc297.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-298
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc298.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc298.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-299
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc299.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc299.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-30
+# China Mobile Hong Kong
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc030.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc030.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-31
+# China Telecom Global / CTExcel
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc031.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc031.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-35
+# Webbing Hong Kong
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc035.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc035.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-380
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc380.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc380.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-382
+# South China Telecommunications
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc382.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc382.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-383
+# China Mobile Hong Kong
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc383.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc383.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-390
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc390.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc390.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-391
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc391.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc391.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-392
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc392.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc392.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-393
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc393.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc393.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-394
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc394.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc394.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-395
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc395.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc395.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-396
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc396.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc396.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-397
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc397.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc397.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-398
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc398.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc398.mcc454.pub.3gppnetwork.org
+
+# ------------------------------------------------------------
+# MCC-MNC: 454-399
+# Government use
+# ------------------------------------------------------------
+DOMAIN-SUFFIX,mnc399.mcc454.3gppnetwork.org
+DOMAIN-SUFFIX,mnc399.mcc454.pub.3gppnetwork.org
+
+
+# ============================================================
+# 【03】Apple / 地区检测
+# ============================================================
+
+DOMAIN-SUFFIX,gspe1-ssl.ls.apple.com
+
+
+# ============================================================
+# 【04】运营商补充 / CSL / ClubSIM
+# ============================================================
+
+DOMAIN,csl.prod.ondemandconnectivity.com
+DOMAIN,hhk.prod.ondemandconnectivity.com
+
+# The following LOWERTOP rules are intentionally omitted:
+#
+# DOMAIN,epdg.epc.mnc000.mcc454.pub.3gppnetwork.org
+# DOMAIN,ss.epdg.epc.mnc000.mcc454.pub.3gppnetwork.org
+# DOMAIN,ss.epdg.epc.geo.mnc000.mcc454.pub.3gppnetwork.org
+#
+# They are already covered by:
+#
+# DOMAIN-SUFFIX,mnc000.mcc454.pub.3gppnetwork.org
+
+
+# ============================================================
+# 【05】运营商补充 / CMHK
+# ============================================================
+
+# China Mobile Hong Kong
+DOMAIN-SUFFIX,hk.chinamobile.com
+
+# Carrier-specific connectivity
+DOMAIN,h3a.prod.ondemandconnectivity.com
+
+# IMS / XCAP / BSF
+DOMAIN,xcap.ims.mnc012.mcc454.pub.3gppnetwork.org
+DOMAIN,bsf.mnc012.mcc454.pub.3gppnetwork.org
+
+# epdg.epc.mnc012... is already covered by:
+#
+# DOMAIN-SUFFIX,mnc012.mcc454.pub.3gppnetwork.org
+
+
+# ============================================================
+# 【06】运营商补充 / 3 HK
+# ============================================================
+
+DOMAIN-SUFFIX,three.com.hk
+
+# hhk.prod.ondemandconnectivity.com is already included
+# in the CSL / shared carrier section above.
+
+# mnc003 / 004 / 005 / 014 are already included in
+# the standard 3GPP section above.
+
+
+# ============================================================
+# 【07】运营商 IP Fallback
+# ============================================================
+
+# ------------------------------------------------------------
+# CMHK
+# ------------------------------------------------------------
+
+IP-CIDR,182.239.86.0/24,no-resolve
+IP-CIDR,182.239.118.0/24,no-resolve
+IP-CIDR,203.142.127.0/24,no-resolve
+
+
+# ------------------------------------------------------------
+# 3 HK
+# ------------------------------------------------------------
+
+IP-CIDR,4.209.41.157/32,no-resolve
+IP-CIDR,124.217.186.0/24,no-resolve
+IP-CIDR,203.145.92.0/24,no-resolve
+
+
+# ============================================================
+# End of WiFiCalling-HK
+# ============================================================
