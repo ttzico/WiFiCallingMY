@@ -1,19 +1,33 @@
 # WiFiCallingMY
 # Malaysia Hotlink / Maxis VoWiFi
 # MCC 502 / MNC 012
-# Verified with Surge Mac Gateway Mode
 #
-# Version: 1.0.0
-# Updated: 2026-08-24
+# Version: 2.0.0
+# Updated: 2026-08-28
 #
-# This rule set contains verified Hotlink / Maxis
-# Wi-Fi Calling related domains.
+# Hotlink / Maxis Wi-Fi Calling
 #
-# Virtual IP addresses are intentionally excluded.
-# UDP 500/4500 are intentionally not matched globally.
+# Standard:
+# - 3GPP ePDG
+#
+# Carrier:
+# - Maxis Apple carrier service
+#
+# Note:
+# - Virtual IP addresses are intentionally excluded.
+# - UDP 500/4500 are intentionally not matched globally.
 
-# Maxis IMS / ePDG
-DOMAIN,epdg.epc.mnc012.mcc502.pub.3gppnetwork.org
 
-# Apple / Maxis carrier service
+# ============================================================
+# Maxis / Hotlink IMS / ePDG
+# ============================================================
+
+DOMAIN-SUFFIX,mnc012.mcc502.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mnc012.mcc502.3gppnetwork.org
+
+
+# ============================================================
+# Apple / Maxis Carrier Service
+# ============================================================
+
 DOMAIN,apple-es.maxis.com.my
